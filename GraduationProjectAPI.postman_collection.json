@@ -1,0 +1,319 @@
+{
+	"info": {
+		"_postman_id": "c3fa5802-996f-4629-87fa-8c64c9330331",
+		"name": "GraduationProjectAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "48992374",
+		"_collection_link": "https://ayatallahmohamed2345-1591110.postman.co/workspace/ApiProject~7935bb4f-0f01-4449-9a6a-ec921251288f/collection/48992374-c3fa5802-996f-4629-87fa-8c64c9330331?action=share&source=collection_link&creator=48992374"
+	},
+	"item": [
+		{
+			"name": "Verify Login with valid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"User exists!\");\r",
+							"});\r",
+							"pm.test(\"Response body responseCode matches HTTP status code\", function () {\r",
+							"    // Get the actual HTTP status code\r",
+							"    const httpStatus = pm.response.code;\r",
+							"\r",
+							"    // Try to parse the response body and extract responseCode if present\r",
+							"    let body = {};\r",
+							"    try {\r",
+							"        body = pm.response.json();\r",
+							"    } catch (e) {\r",
+							"        // If not JSON, keep body as empty object\r",
+							"    }\r",
+							"\r",
+							"    // Some APIs put the code under responseCode or status or code\r",
+							"    const bodyStatus = body.responseCode ?? body.status ?? body.code;\r",
+							"\r",
+							"    // Ensure we found a numeric code in the body\r",
+							"    pm.expect(bodyStatus, \"Response body must include a numeric status code field\").to.be.a(\"number\");\r",
+							"\r",
+							"    // Compare them\r",
+							"    pm.expect(bodyStatus, `Body status (${bodyStatus}) should equal HTTP status (${httpStatus})`).to.equal(httpStatus);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin?email=validemail@example.com&password=Valid123",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "validemail@example.com"
+						},
+						{
+							"key": "password",
+							"value": "Valid123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login without email parameter",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"Bad request, email or password parameter is missing in POST request.\");\r",
+							"});\r",
+							"pm.test(\"Response body responseCode matches HTTP status code\", function () {\r",
+							"    // Get the actual HTTP status code\r",
+							"    const httpStatus = pm.response.code;\r",
+							"\r",
+							"    // Try to parse the response body and extract responseCode if present\r",
+							"    let body = {};\r",
+							"    try {\r",
+							"        body = pm.response.json();\r",
+							"    } catch (e) {\r",
+							"        // If not JSON, keep body as empty object\r",
+							"    }\r",
+							"\r",
+							"    // Some APIs put the code under responseCode or status or code\r",
+							"    const bodyStatus = body.responseCode ?? body.status ?? body.code;\r",
+							"\r",
+							"    // Ensure we found a numeric code in the body\r",
+							"    pm.expect(bodyStatus, \"Response body must include a numeric status code field\").to.be.a(\"number\");\r",
+							"\r",
+							"    // Compare them\r",
+							"    pm.expect(bodyStatus, `Body status (${bodyStatus}) should equal HTTP status (${httpStatus})`).to.equal(httpStatus);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin?password=Valid123",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					],
+					"query": [
+						{
+							"key": "password",
+							"value": "Valid123"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE To Verify Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"This request method is not supported\");\r",
+							"});\r",
+							"pm.test(\"Response body responseCode matches HTTP status code\", function () {\r",
+							"    // Get the actual HTTP status code\r",
+							"    const httpStatus = pm.response.code;\r",
+							"\r",
+							"    // Try to parse the response body and extract responseCode if present\r",
+							"    let body = {};\r",
+							"    try {\r",
+							"        body = pm.response.json();\r",
+							"    } catch (e) {\r",
+							"        // If not JSON, keep body as empty object\r",
+							"    }\r",
+							"\r",
+							"    // Some APIs put the code under responseCode or status or code\r",
+							"    const bodyStatus = body.responseCode ?? body.status ?? body.code;\r",
+							"\r",
+							"    // Ensure we found a numeric code in the body\r",
+							"    pm.expect(bodyStatus, \"Response body must include a numeric status code field\").to.be.a(\"number\");\r",
+							"\r",
+							"    // Compare them\r",
+							"    pm.expect(bodyStatus, `Body status (${bodyStatus}) should equal HTTP status (${httpStatus})`).to.equal(httpStatus);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Verify Login with invalid details",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"pm.test(\"Body matches string\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"User not found!\");\r",
+							"});\r",
+							"pm.test(\"Response body responseCode matches HTTP status code\", function () {\r",
+							"    // Get the actual HTTP status code\r",
+							"    const httpStatus = pm.response.code;\r",
+							"\r",
+							"    // Try to parse the response body and extract responseCode if present\r",
+							"    let body = {};\r",
+							"    try {\r",
+							"        body = pm.response.json();\r",
+							"    } catch (e) {\r",
+							"        // If not JSON, keep body as empty object\r",
+							"    }\r",
+							"\r",
+							"    // Some APIs put the code under responseCode or status or code\r",
+							"    const bodyStatus = body.responseCode ?? body.status ?? body.code;\r",
+							"\r",
+							"    // Ensure we found a numeric code in the body\r",
+							"    pm.expect(bodyStatus, \"Response body must include a numeric status code field\").to.be.a(\"number\");\r",
+							"\r",
+							"    // Compare them\r",
+							"    pm.expect(bodyStatus, `Body status (${bodyStatus}) should equal HTTP status (${httpStatus})`).to.equal(httpStatus);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://automationexercise.com/api/verifyLogin?email=invalid@mail.com&password=invalid",
+					"protocol": "https",
+					"host": [
+						"automationexercise",
+						"com"
+					],
+					"path": [
+						"api",
+						"verifyLogin"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "invalid@mail.com"
+						},
+						{
+							"key": "password",
+							"value": "invalid"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
