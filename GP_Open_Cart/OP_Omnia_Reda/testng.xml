@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Automation Exercise Suite">
+
+    <test name="All Functional Tests">
+        <classes>
+
+            <class name="Tests.TC08_ProductDetailTest"/>
+            <class name="Tests.TC12_AddProductsTest"/>
+            <class name="Tests.TC13_ProductQuantityTest"/>
+            <class name="Tests.TC17_RemoveProductTest"/>
+            <class name="Tests.TC18_ViewCategoryTest"/>
+            <class name="Tests.TC21_AddReviewTest"/>
+            <class name="Tests.TC22_RecommendedItemsTest"/>
+        </classes>
+    </test>
+
+</suite>
