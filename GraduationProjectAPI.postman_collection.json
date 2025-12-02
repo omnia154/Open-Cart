@@ -65,7 +65,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin?email=validemail@example.com&password=Valid123",
+					"raw": "https://automationexercise.com/api/verifyLogin?email={{validemail}}&password={{validpassword}}",
 					"protocol": "https",
 					"host": [
 						"automationexercise",
@@ -78,11 +78,11 @@
 					"query": [
 						{
 							"key": "email",
-							"value": "validemail@example.com"
+							"value": "{{validemail}}"
 						},
 						{
 							"key": "password",
-							"value": "Valid123"
+							"value": "{{validpassword}}"
 						}
 					]
 				}
@@ -145,7 +145,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin?password=Valid123",
+					"raw": "https://automationexercise.com/api/verifyLogin?password={{validpassword}}",
 					"protocol": "https",
 					"host": [
 						"automationexercise",
@@ -158,7 +158,7 @@
 					"query": [
 						{
 							"key": "password",
-							"value": "Valid123"
+							"value": "{{validpassword}}"
 						}
 					]
 				}
@@ -291,7 +291,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "https://automationexercise.com/api/verifyLogin?email=invalid@mail.com&password=invalid",
+					"raw": "https://automationexercise.com/api/verifyLogin?email={{invalidemail}}&password={{invalidpassword}}",
 					"protocol": "https",
 					"host": [
 						"automationexercise",
@@ -304,11 +304,11 @@
 					"query": [
 						{
 							"key": "email",
-							"value": "invalid@mail.com"
+							"value": "{{invalidemail}}"
 						},
 						{
 							"key": "password",
-							"value": "invalid"
+							"value": "{{invalidpassword}}"
 						}
 					]
 				}
